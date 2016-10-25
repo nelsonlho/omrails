@@ -17,7 +17,7 @@ ActiveAdmin.register User do
     f.semantic_errors
     f.inputs do
       f.input :email
-      f.input :admin
+      f.input :admin, as: :boolean
     end
     f.actions
   end
