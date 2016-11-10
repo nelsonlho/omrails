@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  add_flash_types :danger, :info, :warning, :success
+  
   def access_denied(exception)
     redirect_to root_path, alert: exception.message
   end
