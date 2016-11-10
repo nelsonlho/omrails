@@ -9,7 +9,8 @@ class TweetsController < ApplicationController
 
   # GET /tweets/1
   def show
-    @tweet = Tweet.find(params[:id])
+    @tweet = Tweet.find_by(id: params[:id])
+    redirect_to root_path, :notice => 'Tweet not found' unless @tweet
   end
 
   # GET /tweets/new
@@ -19,7 +20,8 @@ class TweetsController < ApplicationController
 
   # GET /tweets/1/edit
   def edit
-    @tweet = current_user.tweets.find(params[:id])
+    @tweet = current_user.tweets.find_by(id: params[:id])
+    redirect_to root_path, :notice => 'You are not authorized to edit this tweet' unless @tweet
   end
 
   # POST /tweets
@@ -34,7 +36,8 @@ class TweetsController < ApplicationController
 
   # PATCH/PUT /tweets/1
   def update
-    @tweet = current_user.tweets.find(params[:id])
+    @tweet = current_user.tweets.find_by(id: params[:id])
+    redirect_to root_path, :notice => 'You are not authorized to update this tweet' unless @tweet
     if @tweet.update(tweet_params)
       redirect_to @tweet, notice: 'Tweet was successfully updated.'
     else
