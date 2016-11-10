@@ -30,7 +30,7 @@
 
     <!-- Flash Message -->
     <% flash.each do |name, message| %>
-      <% if name == 'notice' %>
+      <% if name != 'warning' or name != 'danger' or name != 'success' or name != 'notice'%>
         <%= content_tag(:div, message, class: "alert alert-info") %>
       <% else %>
         <div class='alert alert-<%= name %>'>
